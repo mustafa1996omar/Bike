@@ -1,0 +1,21 @@
+# Symfony specific files/directories
+/var/
+/bin/
+/vendor/
+
+# Composer related
+/composer.lock
+
+# Logs and caches
+/var/cache/
+/var/cache/dev
+/var/log/
+
+# Compiled assets
+/public/bundles/
+/public/build/
+/public/node_modules/
+
+
+# Symfony default server file (can be ignored if using different server)
+/symfony.lock

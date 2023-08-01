@@ -51,4 +51,32 @@ class BicycleController extends AbstractController
             ]);
         }
     }
+
+    /**
+     * @Route("/", name="home")
+     */
+    public function initialize(Request $request, SessionInterface $session): Response
+    {
+        $bicycle = new Bicycle();
+        $form = $this->createForm(\App\Form\BicycleType::class, $bicycle);
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Bicycle $bicycle */
+            $bicycle = $form->getData();
+
+            // Store the bicycle object in the session
+            $session->set('bicycle', $bicycle);
+
+            // Redirect to the bicycle page
+            return $this->redirectToRoute('bicycle');
+        }
+
+        // Render the form
+        return $this->render('bicycle/initialize.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }

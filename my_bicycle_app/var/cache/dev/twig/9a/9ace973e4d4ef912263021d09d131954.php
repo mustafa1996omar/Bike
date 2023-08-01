@@ -43,23 +43,25 @@ class __TwigTemplate_a99fd1861f69885798ed7ef9cff66cc0 extends Template
         echo "<!DOCTYPE html>
 <html>
 <head>
+
   ";
-        // line 4
-        $this->displayBlock('stylesheets', $context, $blocks);
         // line 5
-        echo "</head>
+        $this->displayBlock('stylesheets', $context, $blocks);
+        // line 8
+        echo "
+</head>
 
 <body>
 
   ";
-        // line 9
+        // line 13
         $this->displayBlock('body', $context, $blocks);
-        // line 10
+        // line 14
         echo "
   ";
-        // line 11
+        // line 15
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 13
+        // line 20
         echo "
 </body>
 </html>";
@@ -68,19 +70,22 @@ class __TwigTemplate_a99fd1861f69885798ed7ef9cff66cc0 extends Template
 
     }
 
-    // line 4
+    // line 5
     public function block_stylesheets($context, array $blocks = [])
     {
         $macros = $this->macros;
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
+        // line 6
+        echo "    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css\"> 
+  ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
     }
 
-    // line 9
+    // line 13
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -92,15 +97,18 @@ class __TwigTemplate_a99fd1861f69885798ed7ef9cff66cc0 extends Template
 
     }
 
-    // line 11
+    // line 15
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 12
-        echo "  ";
+        // line 16
+        echo "    <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js\"></script>
+  ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -113,7 +121,7 @@ class __TwigTemplate_a99fd1861f69885798ed7ef9cff66cc0 extends Template
 
     public function getDebugInfo()
     {
-        return array (  103 => 12,  96 => 11,  84 => 9,  72 => 4,  63 => 13,  61 => 11,  58 => 10,  56 => 9,  50 => 5,  48 => 4,  43 => 1,);
+        return array (  108 => 16,  101 => 15,  89 => 13,  81 => 6,  74 => 5,  65 => 20,  63 => 15,  60 => 14,  58 => 13,  51 => 8,  49 => 5,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -121,7 +129,11 @@ class __TwigTemplate_a99fd1861f69885798ed7ef9cff66cc0 extends Template
         return new Source("<!DOCTYPE html>
 <html>
 <head>
-  {% block stylesheets %}{% endblock %}
+
+  {% block stylesheets %}
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css\"> 
+  {% endblock %}
+
 </head>
 
 <body>
@@ -129,9 +141,12 @@ class __TwigTemplate_a99fd1861f69885798ed7ef9cff66cc0 extends Template
   {% block body %}{% endblock %}
 
   {% block javascripts %}
+    <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js\"></script>
+    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js\"></script>
   {% endblock %}
 
 </body>
-</html>", "base.html.twig", "C:\\Users\\musta\\Documents\\Projects\\PHP\\my_bicycle_app\\templates\\base.html.twig");
+</html>", "base.html.twig", "C:\\Users\\musta\\Documents\\Projects\\Bike\\my_bicycle_app\\templates\\base.html.twig");
     }
 }

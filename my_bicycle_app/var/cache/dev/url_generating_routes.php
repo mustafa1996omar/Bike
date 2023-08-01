@@ -5,6 +5,5 @@
 return [
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
     'bicycle' => [[], ['_controller' => 'App\\Controller\\BicycleController::index'], [], [['text', '/bicycle']], [], [], []],
-    'bicycle_api_accelerate' => [[], ['_controller' => 'App\\Controller\\Api\\BicycleApiController::accelerate'], [], [['text', '/api/accelerate']], [], [], []],
-    'bicycle_api_break' => [[], ['_controller' => 'App\\Controller\\Api\\BicycleApiController::break'], [], [['text', '/api/break']], [], [], []],
+    'home' => [[], ['_controller' => 'App\\Controller\\BicycleController::initialize'], [], [['text', '/']], [], [], []],
 ];

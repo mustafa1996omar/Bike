@@ -39,60 +39,91 @@ class __TwigTemplate_d4655172dd1bc3f0d86e0c3a94df3a7f extends Template
         // line 1
         echo "<!DOCTYPE html>
 <html>
-<head>
-    <title>Bicycle Speed</title>
-    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>
-</head>
-<body>
-<h1>Bicycle</h1>
-    <p>Color: ";
-        // line 9
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 9, $this->source); })()), "getColor", [], "method", false, false, false, 9), "html", null, true);
-        echo "</p>
-    <p>Model: ";
-        // line 10
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 10, $this->source); })()), "getModel", [], "method", false, false, false, 10), "html", null, true);
-        echo "</p>
-    <p id=\"speed\">Current speed: <span></span></p>
-    <p>Number of Gears: ";
-        // line 12
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 12, $this->source); })()), "getNumberOfGears", [], "method", false, false, false, 12), "html", null, true);
-        echo "</p>
-    <p>Weight: ";
-        // line 13
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 13, $this->source); })()), "getWeight", [], "method", false, false, false, 13), "html", null, true);
-        echo "</p>
 
-    <button id=\"accelerate\">Accelerate</button>
-    <button id=\"brake\">Brake</button>
+<head>
+  <title>Bicycle Speed</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\">
+    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>
+    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"></script>
+</head>
+
+<body>
+
+    <div class=\"container mt-5\">
+
+        <h1>Bicycle Speed</h1>
+
+        <div class=\"row\">
+        <div class=\"col-md-6\">
+            <p>Color: ";
+        // line 21
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 21, $this->source); })()), "getColor", [], "method", false, false, false, 21), "html", null, true);
+        echo "</p>
+            <p>Model: ";
+        // line 22
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 22, $this->source); })()), "getModel", [], "method", false, false, false, 22), "html", null, true);
+        echo "</p>
+            <p>Weight: ";
+        // line 23
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 23, $this->source); })()), "getWeight", [], "method", false, false, false, 23), "html", null, true);
+        echo "</p>
+        </div>
+
+        <div class=\"col-md-6\">
+            <p id=\"speed\">Current Speed: <span>";
+        // line 27
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 27, $this->source); })()), "getSpeed", [], "method", false, false, false, 27), "html", null, true);
+        echo "</span></p>
+            <p>Top Speed: ";
+        // line 28
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 28, $this->source); })()), "getTopSpeed", [], "method", false, false, false, 28), "html", null, true);
+        echo "</p>
+            <p>Gears: ";
+        // line 29
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["bicycle"]) || array_key_exists("bicycle", $context) ? $context["bicycle"] : (function () { throw new RuntimeError('Variable "bicycle" does not exist.', 29, $this->source); })()), "getNumberOfGears", [], "method", false, false, false, 29), "html", null, true);
+        echo "</p>
+        </div>
+        </div>
+
+        <button id=\"accelerate\" class=\"btn btn-success mr-2\">Accelerate</button>
+        <button id=\"brake\" class=\"btn btn-danger mr-2\">Brake</button>
+        <a href=\"";
+        // line 35
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
+        echo "\" class=\"btn btn-primary\">Back to Home</a>
+    </div>
 
     <script>
-            \$(document).ready(function() {
-                // Function to update speed
-                function updateSpeed(action) {
-                    \$.ajax({
-                        url: '/bicycle',   // Change this to your route
-                        method: 'GET',
-                        data: { action: action },
-                        dataType: 'json',
-                        success: function(response) {
-                            // Update the speed on the page
-                            \$('#speed span').text(response.speed);
-                        }
-                    });
-                }
-
-                // Event handlers for the buttons
-                \$('#accelerate').click(function() {
-                    updateSpeed('accelerate');
+        \$(document).ready(function() {
+            // Function to update speed
+            function updateSpeed(action) {
+                \$.ajax({
+                    url: '/bicycle',   // Change this to your route
+                    method: 'GET',
+                    data: { action: action },
+                    dataType: 'json',
+                    success: function(response) {
+                        // Update the speed on the page
+                        \$('#speed span').text(response.speed);
+                    }
                 });
+            }
 
-              \$('#brake').click(function() {
-                  updateSpeed('brake');
-              });
-          });
+            // Event handlers for the buttons
+            \$('#accelerate').click(function() {
+                updateSpeed('accelerate');
+            });
+
+            \$('#brake').click(function() {
+                updateSpeed('brake');
+            });
+        });
     </script>
+
 </body>
+
 </html>";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -111,55 +142,77 @@ class __TwigTemplate_d4655172dd1bc3f0d86e0c3a94df3a7f extends Template
 
     public function getDebugInfo()
     {
-        return array (  63 => 13,  59 => 12,  54 => 10,  50 => 9,  40 => 1,);
+        return array (  94 => 35,  85 => 29,  81 => 28,  77 => 27,  70 => 23,  66 => 22,  62 => 21,  40 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("<!DOCTYPE html>
 <html>
-<head>
-    <title>Bicycle Speed</title>
-    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>
-</head>
-<body>
-<h1>Bicycle</h1>
-    <p>Color: {{ bicycle.getColor() }}</p>
-    <p>Model: {{ bicycle.getModel() }}</p>
-    <p id=\"speed\">Current speed: <span></span></p>
-    <p>Number of Gears: {{ bicycle.getNumberOfGears() }}</p>
-    <p>Weight: {{ bicycle.getWeight() }}</p>
 
-    <button id=\"accelerate\">Accelerate</button>
-    <button id=\"brake\">Brake</button>
+<head>
+  <title>Bicycle Speed</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\">
+    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>
+    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"></script>
+</head>
+
+<body>
+
+    <div class=\"container mt-5\">
+
+        <h1>Bicycle Speed</h1>
+
+        <div class=\"row\">
+        <div class=\"col-md-6\">
+            <p>Color: {{ bicycle.getColor() }}</p>
+            <p>Model: {{ bicycle.getModel() }}</p>
+            <p>Weight: {{ bicycle.getWeight() }}</p>
+        </div>
+
+        <div class=\"col-md-6\">
+            <p id=\"speed\">Current Speed: <span>{{ bicycle.getSpeed() }}</span></p>
+            <p>Top Speed: {{ bicycle.getTopSpeed() }}</p>
+            <p>Gears: {{ bicycle.getNumberOfGears() }}</p>
+        </div>
+        </div>
+
+        <button id=\"accelerate\" class=\"btn btn-success mr-2\">Accelerate</button>
+        <button id=\"brake\" class=\"btn btn-danger mr-2\">Brake</button>
+        <a href=\"{{ path('home') }}\" class=\"btn btn-primary\">Back to Home</a>
+    </div>
 
     <script>
-            \$(document).ready(function() {
-                // Function to update speed
-                function updateSpeed(action) {
-                    \$.ajax({
-                        url: '/bicycle',   // Change this to your route
-                        method: 'GET',
-                        data: { action: action },
-                        dataType: 'json',
-                        success: function(response) {
-                            // Update the speed on the page
-                            \$('#speed span').text(response.speed);
-                        }
-                    });
-                }
-
-                // Event handlers for the buttons
-                \$('#accelerate').click(function() {
-                    updateSpeed('accelerate');
+        \$(document).ready(function() {
+            // Function to update speed
+            function updateSpeed(action) {
+                \$.ajax({
+                    url: '/bicycle',   // Change this to your route
+                    method: 'GET',
+                    data: { action: action },
+                    dataType: 'json',
+                    success: function(response) {
+                        // Update the speed on the page
+                        \$('#speed span').text(response.speed);
+                    }
                 });
+            }
 
-              \$('#brake').click(function() {
-                  updateSpeed('brake');
-              });
-          });
+            // Event handlers for the buttons
+            \$('#accelerate').click(function() {
+                updateSpeed('accelerate');
+            });
+
+            \$('#brake').click(function() {
+                updateSpeed('brake');
+            });
+        });
     </script>
+
 </body>
-</html>", "bicycle/index.html.twig", "C:\\Users\\musta\\Documents\\Projects\\PHP\\my_bicycle_app\\templates\\bicycle\\index.html.twig");
+
+</html>", "bicycle/index.html.twig", "C:\\Users\\musta\\Documents\\Projects\\Bike\\my_bicycle_app\\templates\\bicycle\\index.html.twig");
     }
 }

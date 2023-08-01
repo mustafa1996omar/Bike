@@ -1,45 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Bicycle Speed</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-<h1>Bicycle</h1>
-    <p>Color: {{ bicycle.getColor() }}</p>
-    <p>Model: {{ bicycle.getModel() }}</p>
-    <p id="speed">Current speed: <span></span></p>
-    <p>Number of Gears: {{ bicycle.getNumberOfGears() }}</p>
-    <p>Weight: {{ bicycle.getWeight() }}</p>
 
-    <button id="accelerate">Accelerate</button>
-    <button id="brake">Brake</button>
+<head>
+  <title>Bicycle Speed</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <h1>Bicycle Speed</h1>
+
+        <div class="row">
+        <div class="col-md-6">
+            <p>Color: {{ bicycle.getColor() }}</p>
+            <p>Model: {{ bicycle.getModel() }}</p>
+            <p>Weight: {{ bicycle.getWeight() }}</p>
+        </div>
+
+        <div class="col-md-6">
+            <p id="speed">Current Speed: <span>{{ bicycle.getSpeed() }}</span></p>
+            <p>Top Speed: {{ bicycle.getTopSpeed() }}</p>
+            <p>Gears: {{ bicycle.getNumberOfGears() }}</p>
+        </div>
+        </div>
+
+        <button id="accelerate" class="btn btn-success mr-2">Accelerate</button>
+        <button id="brake" class="btn btn-danger mr-2">Brake</button>
+        <a href="{{ path('home') }}" class="btn btn-primary">Back to Home</a>
+    </div>
 
     <script>
-            $(document).ready(function() {
-                // Function to update speed
-                function updateSpeed(action) {
-                    $.ajax({
-                        url: '/bicycle',   // Change this to your route
-                        method: 'GET',
-                        data: { action: action },
-                        dataType: 'json',
-                        success: function(response) {
-                            // Update the speed on the page
-                            $('#speed span').text(response.speed);
-                        }
-                    });
-                }
-
-                // Event handlers for the buttons
-                $('#accelerate').click(function() {
-                    updateSpeed('accelerate');
+        $(document).ready(function() {
+            // Function to update speed
+            function updateSpeed(action) {
+                $.ajax({
+                    url: '/bicycle',   // Change this to your route
+                    method: 'GET',
+                    data: { action: action },
+                    dataType: 'json',
+                    success: function(response) {
+                        // Update the speed on the page
+                        $('#speed span').text(response.speed);
+                    }
                 });
+            }
 
-              $('#brake').click(function() {
-                  updateSpeed('brake');
-              });
-          });
+            // Event handlers for the buttons
+            $('#accelerate').click(function() {
+                updateSpeed('accelerate');
+            });
+
+            $('#brake').click(function() {
+                updateSpeed('brake');
+            });
+        });
     </script>
+
 </body>
+
 </html>

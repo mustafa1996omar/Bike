@@ -1,0 +1,51 @@
+{# templates/bicycle/initialize.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container mt-5">
+
+  <h1>Initialize Bicycle</h1>
+
+  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    <div class="form-group">
+      {{ form_label(form.color) }}
+      {{ form_widget(form.color, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+      {{ form_label(form.model) }}
+      {{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <div class="form-group">
+      {{ form_label(form.speed) }}
+      {{ form_widget(form.speed, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+      {{ form_label(form.topSpeed) }}
+      {{ form_widget(form.topSpeed, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+      {{ form_label(form.numberOfGears) }}
+      {{ form_widget(form.numberOfGears, {'attr': {'type': 'number', 'class': 'form-control'}}) }} 
+    </div>
+
+    <div class="form-group">
+      {{ form_label(form.weight) }}
+      {{ form_widget(form.weight, {'attr': {'class': 'form-control'}}) }}  
+    </div>
+
+    <div class="form-group">
+      {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    </div>
+
+  {{ form_end(form) }}
+
+</div>
+
+{% endblock %}
