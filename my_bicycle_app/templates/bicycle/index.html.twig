@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bicycle Speed</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Bicycle</h1>
+    <p>Color: {{ bicycle.getColor() }}</p>
+    <p>Model: {{ bicycle.getModel() }}</p>
+    <p id="speed">Current speed: <span></span></p>
+    <p>Number of Gears: {{ bicycle.getNumberOfGears() }}</p>
+    <p>Weight: {{ bicycle.getWeight() }}</p>
+
+    <button id="accelerate">Accelerate</button>
+    <button id="brake">Brake</button>
+
+    <script>
+            $(document).ready(function() {
+                // Function to update speed
+                function updateSpeed(action) {
+                    $.ajax({
+                        url: '/bicycle',   // Change this to your route
+                        method: 'GET',
+                        data: { action: action },
+                        dataType: 'json',
+                        success: function(response) {
+                            // Update the speed on the page
+                            $('#speed span').text(response.speed);
+                        }
+                    });
+                }
+
+                // Event handlers for the buttons
+                $('#accelerate').click(function() {
+                    updateSpeed('accelerate');
+                });
+
+              $('#brake').click(function() {
+                  updateSpeed('brake');
+              });
+          });
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# config/routes.yaml
+
+# Import routes from the "controllers" attribute-type routing
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+# Add the custom route for the "/bicycle" URL
+bicycle:
+    path: /bicycle
+    controller: App\Controller\BicycleController::index
+    methods: GET
+
+
