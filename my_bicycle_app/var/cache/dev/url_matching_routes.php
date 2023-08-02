@@ -9,7 +9,8 @@ return [
     false, // $matchHost
     [ // $staticRoutes
         '/bicycle' => [[['_route' => 'bicycle', '_controller' => 'App\\Controller\\BicycleController::index'], null, ['GET' => 0], null, false, false, null]],
-        '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\BicycleController::initialize'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\BicycleController::chooseType'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/initialize' => [[['_route' => 'initialize', '_controller' => 'App\\Controller\\BicycleController::initialize'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

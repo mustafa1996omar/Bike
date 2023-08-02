@@ -5,5 +5,6 @@
 return [
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
     'bicycle' => [[], ['_controller' => 'App\\Controller\\BicycleController::index'], [], [['text', '/bicycle']], [], [], []],
-    'home' => [[], ['_controller' => 'App\\Controller\\BicycleController::initialize'], [], [['text', '/']], [], [], []],
+    'home' => [[], ['_controller' => 'App\\Controller\\BicycleController::chooseType'], [], [['text', '/']], [], [], []],
+    'initialize' => [[], ['_controller' => 'App\\Controller\\BicycleController::initialize'], [], [['text', '/initialize']], [], [], []],
 ];
