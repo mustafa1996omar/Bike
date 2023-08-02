@@ -12,7 +12,7 @@ class Bicycle
     private $numberOfGears;
     private $weight;
 
-    public function __construct($color = '', $model = '', $speed = 0, $topSpeed = 0, $numberOfGears = 0, $weight = 0)
+    public function __construct($color, $model, $speed, $topSpeed, $numberOfGears, $weight)
     {
         $this->setColor($color);
         $this->setModel($model);
@@ -22,16 +22,7 @@ class Bicycle
         $this->setWeight($weight);
     }
 
-    // public function __construct($color, $model, $speed, $topSpeed, $numberOfGears, $weight)
-    // {
-    //     $this->setColor($color);
-    //     $this->setModel($model);
-    //     $this->setSpeed($speed);
-    //     $this->setTopSpeed($topSpeed);
-    //     $this->setNumberOfGears($numberOfGears);
-    //     $this->setWeight($weight);
-    // }
-
+    // Getters and setters
     public function getColor()
     {
         return $this->color;
@@ -116,7 +107,7 @@ class Bicycle
 
     public function accelerate()
     {
-        $newSpeed = $this->speed + 5;
+        $newSpeed = $this->speed + 1;
 
         if ($newSpeed > $this->topSpeed) {
             $this->speed = $this->topSpeed;
@@ -127,7 +118,7 @@ class Bicycle
 
     public function brake()
     {
-        $newSpeed = $this->speed - 5;
+        $newSpeed = $this->speed - 1;
 
         if ($newSpeed < 0) {
             $this->speed = 0;

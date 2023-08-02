@@ -3,49 +3,96 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container h-100">
+    <div class="row justify-content-center align-items-center vh-100">
+		<div class="col-sm-12 col-md-6 col-lg-4">
+			<h1>Initialize Bicycle</h1>
 
-<div class="container mt-5">
+			{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-  <h1>Initialize Bicycle</h1>
+			{% if form.aerodynamicShape is defined %}
+				<div class="form-group" id="aerodynamicShape-group">
+					{{ form_label(form.aerodynamicShape) }}
+					{{ form_widget(form.aerodynamicShape, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			{% endif %}
 
-  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+			{% if form.batterySize is defined %}
+				<div class="form-group" id="batterySize-group">
+					{{ form_label(form.batterySize) }}
+					{{ form_widget(form.batterySize, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			{% endif %}
 
-    <div class="form-group">
-      {{ form_label(form.color) }}
-      {{ form_widget(form.color, {'attr': {'class': 'form-control'}}) }}
-    </div>
+			<div class="form-group">
+				{{ form_label(form.color) }}
+				{{ form_widget(form.color, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-    <div class="form-group">
-      {{ form_label(form.model) }}
-      {{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }} 
-    </div>
+			<div class="form-group">
+				{{ form_label(form.model) }}
+				{{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-    <div class="form-group">
-      {{ form_label(form.speed) }}
-      {{ form_widget(form.speed, {'attr': {'class': 'form-control'}}) }}
-    </div>
+			<div class="form-group">
+				{{ form_label(form.speed) }}
+				{{ form_widget(form.speed, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-    <div class="form-group">
-      {{ form_label(form.topSpeed) }}
-      {{ form_widget(form.topSpeed, {'attr': {'class': 'form-control'}}) }}
-    </div>
+			<div class="form-group">
+				{{ form_label(form.topSpeed) }}
+				{{ form_widget(form.topSpeed, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-    <div class="form-group">
-      {{ form_label(form.numberOfGears) }}
-      {{ form_widget(form.numberOfGears, {'attr': {'type': 'number', 'class': 'form-control'}}) }} 
-    </div>
+			<div class="form-group">
+				{{ form_label(form.numberOfGears) }}
+				{{ form_widget(form.numberOfGears, {'attr': {'type': 'number', 'class': 'form-control'}}) }}
+			</div>
 
-    <div class="form-group">
-      {{ form_label(form.weight) }}
-      {{ form_widget(form.weight, {'attr': {'class': 'form-control'}}) }}  
-    </div>
+			<div class="form-group">
+				{{ form_label(form.weight) }}
+				{{ form_widget(form.weight, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-    <div class="form-group">
-      {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-    </div>
+			<div class="form-group text-center" >
+				{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+			</div>
 
-  {{ form_end(form) }}
-
+			{{ form_end(form) }}
+		</div>
+	</div>
 </div>
-
 {% endblock %}
+
+{# {% block javascripts %}   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 <script>
+			$(document).ready(function() {
+			
+				// Page load
+				adjustFields();
+			
+				// Change event
+				$('#bicycle_type').change(function() {
+					adjustFields();
+				});
+			
+			});
+			
+			function adjustFields() {
+			
+				var type = $('#bicycle_type').val();
+				if (type == 'ElectricBicycle') {
+					// show the battery size field if it doesn't already exist
+					$('#batterySize-group').show();
+					// hide the aerodynamic shape field if it exists
+					$('#aerodynamicShape-group').hide();
+				} else if (type == 'RoadBicycle') {
+					// hide the battery size field if it exists
+					$('#batterySize-group').hide();
+					// show the aerodynamic shape field if it doesn't already exist
+					$('#aerodynamicShape-group').show();
+				}
+			}
+			</script>
+{% endblock %}
+#}

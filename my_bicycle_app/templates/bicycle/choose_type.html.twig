@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">Choose your bicycle type</h1>
+    <div class="d-flex justify-content-center">
+        <div class="col-sm-12 col-md-6 col-lg-4">  {# Change the number of columns for medium and large devices here #}
+            {{ form_start(form, {'attr': {'class': 'my-custom-form'}}) }}
+            <div class="form-group">
+                {{ form_label(form.type, null, {'label_attr': {'class': 'form-control-label'}}) }}
+                {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.type) }}
+            </div>
+            <div class="text-center">
+            {{ form_widget(form.next, {'attr': {'class': 'btn btn-primary'}}) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

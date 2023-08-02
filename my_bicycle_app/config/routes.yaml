@@ -7,15 +7,19 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-# Add the custom route for the "/bicycle" URL
+# Added the custom route for the "/bicycle" URL
 bicycle:
     path: /bicycle
     controller: App\Controller\BicycleController::index
     methods: GET
 
-# Add the custom route for the "/" URL as the home page
+# Added the custom route for the "/" URL as the home page
 home:
     path: /
+    controller: App\Controller\BicycleController::chooseType
+    methods: GET|POST
+# Added the custom route for the "/initialize" URL as the page to create the bike
+initialize:
+    path: /initialize
     controller: App\Controller\BicycleController::initialize
     methods: GET|POST
-

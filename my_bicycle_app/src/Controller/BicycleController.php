@@ -1,16 +1,17 @@
 <?php
 
-// src/Controller/BicycleController.php
 namespace App\Controller;
 
 use App\Entity\Bicycle;
+use App\Entity\ElectricBicycle;
+use App\Entity\RoadBicycle;
+use App\Form\BicycleTypeForm;
+use App\Form\ElectricBicycleType;
+use App\Form\RoadBicycleType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 
 class BicycleController extends AbstractController
 {
@@ -19,10 +20,14 @@ class BicycleController extends AbstractController
      */
     public function index(Request $request, SessionInterface $session): Response
     {
-        $bicycle = $session->get('bicycle', function () {
-            // Create a default bicycle instance (you can adjust the initial values)
-            return new Bicycle('Default Color', 'Default Model', 30, 7, 15, 50);
-        });
+        // The session now holds either an ElectricBicycle or a RoadBicycle
+        $bicycle = $session->get('bicycle');
+
+        // We will need to make sure that $bicycle is not null before using it
+        if (!$bicycle) {
+            // If there is no bicycle in the session, redirect to the home page
+            return $this->redirectToRoute('home');
+        }
 
         $action = $request->query->get('action');
         $errorMessage = null;
@@ -55,18 +60,44 @@ class BicycleController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function initialize(Request $request, SessionInterface $session): Response
+    public function chooseType(Request $request): Response
     {
-        $bicycle = new Bicycle();
-        $form = $this->createForm(\App\Form\BicycleType::class, $bicycle);
-
+        $form = $this->createForm(BicycleTypeForm::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Bicycle $bicycle */
-            $bicycle = $form->getData();
+            $type = $form->get('type')->getData();
 
+            // Redirect to the form for the selected type
+            return $this->redirectToRoute('initialize', ['type' => $type]);
+        }
+
+        // Render the form
+        return $this->render('bicycle/choose_type.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/initialize", name="initialize")
+     */
+    public function initialize(Request $request, SessionInterface $session): Response
+    {
+        // Based on the type of bike, we initialize the correct form
+        if ($request->query->get('type') === 'electric') {
+            $bicycle = new ElectricBicycle();
+            $form = $this->createForm(ElectricBicycleType::class, $bicycle);
+        } else {
+            $bicycle = new RoadBicycle();
+            $form = $this->createForm(RoadBicycleType::class, $bicycle);
+        }
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             // Store the bicycle object in the session
             $session->set('bicycle', $bicycle);
 
